@@ -3,16 +3,16 @@ namespace LetsBot\Api;
 
 class LetsBot
 {
-    use \LetsBot\Api\Extra\Media;
+    // use \LetsBot\Api\Extra\Media;
     use \LetsBot\Api\Extra\Message;
-    use \LetsBot\Api\Extra\Buttons;
-    use \LetsBot\Api\Extra\ListMessage;
-    use \LetsBot\Api\Extra\Groups;
-    use \LetsBot\Api\Extra\Chat;
-    use \LetsBot\Api\Extra\User;
-    use \LetsBot\Api\Extra\Instance;
-    use \LetsBot\Api\Extra\Product;
-    use \LetsBot\Api\Extra\QRCodeSession;
+    // use \LetsBot\Api\Extra\Buttons;
+    // use \LetsBot\Api\Extra\ListMessage;
+    // use \LetsBot\Api\Extra\Groups;
+    // use \LetsBot\Api\Extra\Chat;
+    // use \LetsBot\Api\Extra\User;
+    // use \LetsBot\Api\Extra\Instance;
+    // use \LetsBot\Api\Extra\Product;
+    // use \LetsBot\Api\Extra\QRCodeSession;
     use Params, GuzzleMethods;
 
     public static $api_key;
