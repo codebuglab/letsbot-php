@@ -5,7 +5,7 @@ the package can provide all you need to use Lets Bot api according the [LetsBot 
 if you are using laravel you should install it using composer
 
 ```
-composer require letsbot/php-package
+composer require codebuglab/letsbot-php
 ```
 
 after install it you should publish the config file to set your integration values
