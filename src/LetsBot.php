@@ -3,7 +3,7 @@ namespace LetsBot\Api;
 
 class LetsBot
 {
-    // use \LetsBot\Api\Extra\Media;
+    use \LetsBot\Api\Extra\Media;
     use \LetsBot\Api\Extra\Message;
     // use \LetsBot\Api\Extra\Buttons;
     // use \LetsBot\Api\Extra\ListMessage;
