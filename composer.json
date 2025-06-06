@@ -54,7 +54,7 @@
     ],
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.0.x-dev"
+            "dev-master": "2.0.1.x-dev"
         },
         "laravel": {
             "providers": [
@@ -88,5 +88,5 @@
             "composer/package-versions-deprecated": true
         }
     },
-    "version": "2.0.0"
+    "version": "2.0.1"
 }

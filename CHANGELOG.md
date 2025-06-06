@@ -5,6 +5,13 @@ All notable changes to the LetsBot PHP package will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2025-06-06
+
+### Fixed
+- Fixed URL domain configuration to use a static value (https://letsbot.net/) instead of a variable
+- Resolved cURL error 3: "URL rejected: No host part in the URL" that occurred when domain was not properly set
+- Removed unnecessary domain configuration from environment variables and config files
+
 ## [2.0.0] - 2025-06-06
 
 ### Added
