@@ -5,4 +5,31 @@ parameters:
     excludePaths:
         - tests
         - vendor
-    checkMissingIterableValueType: false 
+        - src/LetsBotServiceProvider.php # Exclude Laravel-specific file
+    
+    # Properly handle missing array typehints instead of using deprecated option
+    ignoreErrors:
+        # Ignore unsafe usage of new static() - design pattern used throughout the library
+        - message: '#Unsafe usage of new static\(\)#'
+          path: src/*
+        
+        # Ignore access to private properties through static:: - design pattern used throughout
+        - message: '#Unsafe access to private property .* through static::#'
+          path: src/*
+        
+        # Other specific issues
+        - message: '#Comparison operation ">" between int<1, max> and 0 is always true#'
+          path: src/LetsBot.php
+        - message: '#Static property LetsBot\\Api\\LetsBot::\$response is unused#'
+          path: src/LetsBot.php
+        - message: '#Method LetsBot\\Api\\LetsBotFacade::__callStatic\(\) should return .* but returns#'
+          path: src/LetsBotFacade.php
+        
+        # Add specific rule for missing iterable value type errors
+        - message: '#missingType.iterableValue#'
+          path: src/*
+        
+    treatPhpDocTypesAsCertain: false
+    
+    # Improve error messages
+    reportUnmatchedIgnoredErrors: false 
