@@ -1,193 +1,177 @@
-# LetsBot Api Package
+# LetsBot PHP Package
 
-the package can provide all you need to use Lets Bot api according the [LetsBot Api Document](https://docs.letsbot.net)
+[![Tests](https://github.com/codebuglab/letsbot-php/workflows/Tests/badge.svg)](https://github.com/codebuglab/letsbot-php/actions)
+[![codecov](https://codecov.io/gh/codebuglab/letsbot-php/branch/main/graph/badge.svg)](https://codecov.io/gh/codebuglab/letsbot-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/codebuglab/letsbot-php.svg?style=flat-square)](https://packagist.org/packages/codebuglab/letsbot-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/codebuglab/letsbot-php.svg?style=flat-square)](https://packagist.org/packages/codebuglab/letsbot-php)
+[![License](https://img.shields.io/packagist/l/codebuglab/letsbot-php.svg?style=flat-square)](https://packagist.org/packages/codebuglab/letsbot-php)
 
-if you are using laravel you should install it using composer
+A comprehensive PHP package for integrating with the LetsBot WhatsApp API. This package provides a powerful, easy-to-use interface to leverage WhatsApp's extensive messaging capabilities in your PHP applications.
 
-```
+> LetsBot transforms business messaging by providing access to WhatsApp's platform, used by 2 billion people worldwide with 60 billion daily messages. Our RESTful API enables you to connect your WhatsApp number to various third-party systems, programming languages, CMS, CRMs & CLI tools with minimal hassle and no complex dependencies.
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Basic Usage](#basic-usage)
+- [API Features](#api-features)
+- [Documentation](#documentation)
+- [Testing](#testing)
+- [Compatibility](#compatibility)
+- [License](#license)
+- [Support](#support)
+
+## Requirements
+
+- PHP 7.4 or higher
+- Guzzle HTTP 7.0 or higher
+- A LetsBot account with API credentials
+
+## Installation
+
+### Laravel
+
+If you're using Laravel, install the package via Composer:
+
+```bash
 composer require codebuglab/letsbot-php
 ```
 
-after install it you should publish the config file to set your integration values
+After installation, publish the configuration file:
 
-```
+```bash
 php artisan vendor:publish --tag=letsbot-config
 ```
 
-you can find the config file in `config/letsbot.php`
+You can find the config file in `config/letsbot.php`.
 
-```
-return [
- 'api_key'=>env('LETS_BOT_API_KEY','test'),
- 'ssl_verify'=>true,
-];
-```
+### PHP Native
 
-`api_key` to set api key generated from your dashboard
+For PHP native or OOP applications:
 
-`ssl_verify` this option can disable the ssl CERT PEM if you are using the package under development in your project must be change it to `false` to skip errors
-
-if you are using php native or php OOP and you need to use our package ?
-
-no problem this is easy just you have set your integrate your data as well
-
-
-in this package we are provide alias `LetsBot\Api\LetsBot::class` you don't need do anything else..
-
-you just need to use the `use LetsBot;` class in your object
-
-and we provide a helper function `lb` nested the `LetsBot` class
-
-example:-
-
-```
+```php
 require 'vendor/autoload.php';
+
 $lb = (new \LetsBot\Api\LetsBot);
-$lb::$api_key = 'test'; // set api key
-$lb::$ssl_verify = false; // set ssl optional | true or false . default is true
+$lb::$api_key = 'your_api_key'; // Set API key
+$lb::$ssl_verify = false; // Set SSL verification (true/false, default is true)
 
-
-// $lb = new LetsBot\Api\LetsBot;
 $result = $lb->ChatList()->send();
 echo json_encode($result);
 ```
 
-# usage
+## Configuration
 
-in this package we are provide  alias `LetsBot\Api\LetsBot::class` you don't need do anything else..
+The configuration file contains essential settings for the API connection:
 
-you just need to use the `use LetsBot;` class in your object
-
-and we provide a helper function `lb` nested the `LetsBot` class
-
-example:-
-
+```php
+return [
+  'api_key' => env('LETS_BOT_API_KEY', 'test'),
+  'ssl_verify' => true,
+];
 ```
+
+- `api_key`: Your API key generated from the LetsBot dashboard
+- `ssl_verify`: This option can disable SSL certificate verification if you're in development. Set to `false` to skip SSL certificate errors.
+
+## Basic Usage
+
+The package provides an alias `LetsBot\Api\LetsBot::class` for easy use:
+
+```php
+// In Laravel
+use LetsBot;
+
 return LetsBot::sessionStatus()->send();
-// OR
+
+// OR use the helper function
 return lb()->sessionStatus()->send();
 ```
 
-this is list of methods are ready to use
+All methods follow a common pattern:
 
-# Message
+1. Fluent interface:
+   ```php
+   LetsBot::method()->param1(value)->param2(value)->send();
+   ```
 
-## Send Text Message
-```
-LetsBot::message()->phone($phone)->body('Hi')->send();
-```
+2. Array parameter:
+   ```php
+   LetsBot::method()->send([
+     'param1' => value,
+     'param2' => value
+   ]);
+   ```
 
-- OR
+### Example: Sending a Text Message
 
-```
-LetsBot::message()->send(['phone'=>$phone,'body'=>'Hi']);
-```
-
-
-## Send Sticker Message
-
-```
-LetsBot::sticker()->send(['phone'=>$phone,'url'=>$url]);
-```
-
-- OR
-
-```
-LetsBot::sticker()->phone($phone)->url($url)->send();
+```php
+// Fluent interface
+LetsBot::message()
+    ->phone('1234567890')
+    ->body('Hello from LetsBot!')
+    ->send();
 ```
 
+## API Features
 
-## Send Reaction Message
-```
-LetsBot::react()->phone($phone)->reaction('❤️')->messageId('BAE5A8F8F8E0278E')->send();
-```
+The LetsBot PHP package provides comprehensive access to all WhatsApp Business API features:
 
-- OR
+- **Message Operations** - Send texts, react to messages, reply to specific messages, mentions, and more
+- **Media Messages** - Share images, videos, documents, audio clips, and other media content
+- **Interactive Messages** - Create button messages, list messages, and other interactive content
+- **Chat Operations** - Manage chats, set status, archive conversations, and more
+- **Group Operations** - Create and manage groups, add/remove participants, and group settings
+- **User Operations** - Check presence, manage profiles, block/unblock users
+- **Product Operations** - Manage product catalogs and listings
+- **Instance Operations** - Manage your WhatsApp instance settings and status
+- **Authentication** - Handle QR codes and session management
 
-```
-LetsBot::react()->send(['phone'=>$phone,'reaction'=>'❤️','messageId'=>'BAE5A8F8F8E0278E']);
-```
+## Documentation
 
+For detailed documentation on all available features and methods, please refer to the following guides:
 
-## Send Replay Message
+- [Message Operations](src/Docs/Message.md) - Text messages, stickers, reactions, replies, and message management
+- [Media Messages](src/Docs/Media.md) - Images, videos, files, audio, and other media types
+- [Button Messages](src/Docs/Buttons.md) - Interactive button messages with various configurations
+- [List Messages](src/Docs/ListMessage.md) - Structured lists with sections and items
+- [Chat Operations](src/Docs/Chat.md) - Managing conversations and chat settings
+- [Group Operations](src/Docs/Groups.md) - Creating and managing groups
+- [User Operations](src/Docs/User.md) - User management and profiles
+- [Product Operations](src/Docs/Products.md) - Product catalogs and management
+- [Instance Operations](src/Docs/Instance.md) - Instance configuration and status
+- [QR Code and Sessions](src/Docs/QrAndSesstions.md) - Authentication and session management
 
-```
-LetsBot::reply()->phone($phone)->body('replay msg')->messageId('BAE5A8F8F8E0278E')->send();
-```
+## Testing
 
-- OR
+The package includes comprehensive test coverage. To run tests:
 
-```
- LetsBot::reply()->send([
-    'phone'=>$phone,
-    'body'=>'replay msg',
-    'messageId'=>'BAE5A8F8F8E0278E'
-]);
-```
-
-## Mention Someone
-
-```
-LetsBot::mentions()->phone($phone)->mention($phone2)->send();
-```
-
-- OR
-
-```
-LetsBot::mentions()->send(['phone'=>$phone2,'mention'=>$phone]);
+```bash
+composer test
 ```
 
-## Send disappearing message
+To generate code coverage reports:
 
-```
-LetsBot::disappearing()->phone($phone)->duration(60)->body('This is a disappearing message')->send();
-```
-
-- OR
-
-```
-LetsBot::disappearing()->send([
-    'phone'=>$phone,
-    'duration'=>60, //(Optional)Message disappear after duration time in seconds. Default (7 days)
-    'body'=>'This is a disappearing message that will disappear after X duration',
-]);
+```bash
+composer test-coverage
 ```
 
-## Send Catalog Message
+This will generate an HTML code coverage report in the `coverage` directory.
 
-```
-LetsBot::shareCatalog()->phone($phone)->catalog($phone2)
-->title('This is title of catalog')
-->description('This is description of catalog')
-->body('This is body of catalog')->send();
-```
+## Compatibility
 
-- OR
+This package is tested with PHP 7.4, 8.0, 8.1, and 8.2 to ensure maximum compatibility across different environments and projects.
 
-```
-LetsBot::shareCatalog()->send([
-    'phone'=>$phone,
-    'catalog'=>$phone2,
-    'title'=>'This is title of catalog',
-    'description'=>'This is description of catalog',
-    'body'=>'This is body of catalog',
-]);
-```
+## License
 
-# Buttons
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-# Chat
+## Support
 
-# Groups
+Need assistance? Contact the LetsBot support team:
 
-# Instance
-
-# List Message
-
-# Media (send attachment files or other)
-
-# User
-
-# Products
-
-# Check the QR Code OR Session status
+- Email: sales@letsbot.net
+- Phone/WhatsApp: +966559408401
+- Documentation: [https://docs.letsbot.net](https://docs.letsbot.net)

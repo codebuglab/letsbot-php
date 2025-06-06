@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         cacheResult="true"
+         executionOrder="random"
+         resolveDependencies="true"
+         failOnWarning="false"
+         failOnRisky="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutChangesToGlobalState="true">
+  <testsuites>
+    <testsuite name="Unit">
+      <directory suffix="Test.php">./tests/Unit</directory>
+    </testsuite>
+    <testsuite name="Feature">
+      <directory suffix="Test.php">./tests/Feature</directory>
+    </testsuite>
+    <testsuite name="Integration">
+      <directory suffix="Test.php">./tests/Feature</directory>
+      <exclude>./tests/Unit</exclude>
+    </testsuite>
+  </testsuites>
+  <!-- Coverage section is commented out by default as it requires a coverage driver -->
+  <!--
+  <coverage>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+      <directory suffix=".php">./src/Docs</directory>
+    </exclude>
+    <report>
+      <html outputDirectory="coverage-report" lowUpperBound="50" highLowerBound="90"/>
+      <clover outputFile="coverage-report/clover.xml"/>
+      <text outputFile="coverage-report/coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
+    </report>
+  </coverage>
+  -->
+  <groups>
+    <exclude>
+      <group>external-api</group>
+    </exclude>
+  </groups>
+  <source>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </source>
+  <php>
+    <!-- Default environment variables for testing - customize these in your local phpunit.xml -->
+    <env name="LETSBOT_API_KEY" value="your_api_key_here"/>
+    <env name="LETSBOT_BASE_URL" value="https://letsbot.net/"/>
+    <env name="LETSBOT_TEST_PHONE" value="966555000000"/>
+  </php>
+</phpunit> 

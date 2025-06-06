@@ -1,7 +1,33 @@
 {
     "name": "codebuglab/letsbot-php",
-    "description": "A PHP library for Lets Bot API",
+    "description": "Official PHP client for the LetsBot WhatsApp Business API. Seamlessly integrate WhatsApp messaging into your PHP & Laravel applications to automate customer communication, build chatbots, send notifications, and manage interactions.",
+    "type": "library",
+    "keywords": [
+        "letsbot",
+        "whatsapp",
+        "api",
+        "client",
+        "messaging",
+        "chatbot",
+        "notification",
+        "communication",
+        "laravel",
+        "php"
+    ],
+    "homepage": "https://letsbot.net",
     "license": "MIT",
+    "support": {
+        "email": "sales@letsbot.net",
+        "issues": "https://github.com/codebuglab/letsbot-php/issues",
+        "source": "https://github.com/codebuglab/letsbot-php",
+        "docs": "https://docs.letsbot.net"
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://letsbot.net"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "LetsBot\\Api\\": "src/"
@@ -12,7 +38,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "LetsBot\\Api\\": "src/"
+            "LetsBot\\Api\\Tests\\": "tests/"
         },
         "files": [
             "src/Helper.php"
@@ -20,12 +46,15 @@
     },
     "authors": [
         {
-            "name": "Lets Bot Team"
+            "name": "LetsBot Team",
+            "email": "sales@letsbot.net",
+            "homepage": "https://letsbot.net",
+            "role": "Developer"
         }
     ],
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.0.x-dev"
+            "dev-master": "2.0.0.x-dev"
         },
         "laravel": {
             "providers": [
@@ -37,7 +66,27 @@
         }
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
+        "php": "^7.4|^8.0",
         "guzzlehttp/guzzle": "^7.0"
-    }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0|^10.0",
+        "mockery/mockery": "^1.5",
+        "vlucas/phpdotenv": "^5.3",
+        "phpstan/phpstan": "^1.10"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "analyse": "vendor/bin/phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "version": "2.0.0"
 }
