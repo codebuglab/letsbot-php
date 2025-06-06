@@ -18,7 +18,7 @@ class LetsBot
     use Params, GuzzleMethods;
 
     public static $api_key;
-    public static $domain;
+    public static $domain = 'https://letsbot.net/';
     public static $ssl_verify = true;
     protected static $send_type;
 
@@ -48,8 +48,8 @@ class LetsBot
     {
         // Support for legacy code
         if (function_exists('\config')) {
-            static::$domain = \config('letsbot.domain');
             static::$api_key = \config('letsbot.api_key');
+            // Domain is now fixed
         }
 
         // If we're already using the new architecture, delegate to it

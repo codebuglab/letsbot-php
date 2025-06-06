@@ -18,11 +18,6 @@ return [
     'api_key' => env('LETS_BOT_API_KEY', ''),
 
     /**
-     * Base domain for API calls
-     */
-    'domain' => env('LETS_BOT_DOMAIN', 'https://api.letsbot.net'),
-
-    /**
      * SSL verification
      * Set to false in development environment if you encounter SSL issues
      */

@@ -57,9 +57,8 @@ class LetsBotFacade
                 static::$httpClient->setApiKey(LetsBot::$api_key);
             }
             
-            if (isset(LetsBot::$domain)) {
-                static::$httpClient->setDomain(LetsBot::$domain);
-            }
+            // Always set domain to fixed value
+            static::$httpClient->setDomain('https://letsbot.net/');
             
             if (isset(LetsBot::$ssl_verify)) {
                 static::$httpClient->setSSLVerify(LetsBot::$ssl_verify);

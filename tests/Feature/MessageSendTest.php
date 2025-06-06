@@ -29,7 +29,7 @@ class MessageSendTest extends TestCase
         
         // Configure LetsBot
         LetsBot::$api_key = $_ENV['LETSBOT_API_KEY'] ?? '';
-        LetsBot::$domain = $_ENV['LETSBOT_BASE_URL'] ?? 'https://letsbot.net/';
+        LetsBot::$domain = 'https://letsbot.net/';
         LetsBot::$ssl_verify = true;
     }
     

@@ -18,7 +18,7 @@ class GuzzleClient implements HttpClientInterface
     /**
      * @var string
      */
-    private $domain;
+    private $domain = 'https://letsbot.net/';
 
     /**
      * @var bool

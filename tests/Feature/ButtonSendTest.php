@@ -37,10 +37,11 @@ class ButtonSendTest extends TestCase
         LetsBot::$domain = $_ENV['LETSBOT_BASE_URL'] ?? 'https://letsbot.net/';
         LetsBot::$ssl_verify = true;
         
-        // Create HTTP client
+        // Create an HttpClient for testing
         $this->httpClient = new GuzzleClient();
-        $this->httpClient->setApiKey(LetsBot::$api_key);
-        $this->httpClient->setDomain(LetsBot::$domain);
+        $this->httpClient->setApiKey($_ENV['LETSBOT_API_KEY'] ?? 'test_api_key');
+        // Base URL is now fixed in the GuzzleClient
+        $this->httpClient->setDomain('https://letsbot.net/');
     }
 
     /**
